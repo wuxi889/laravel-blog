@@ -5,10 +5,10 @@
  * @Date: 2020-02-24 13:39:43
  * @LastEditors: uSee
  * @LastEditTime: 2020-02-24 17:16:46
- * @FilePath: \laravel-blog\app\Model\Traits\Curd.php
+ * @FilePath: \laravel-blog\app\Traits\Curd.php
  */
 
-namespace App\Model\Traits;
+namespace App\Traits;
 
 use Illuminate\Support\Facades\Schema;
 
@@ -16,12 +16,12 @@ trait Curd
 {
     public function getFields($available = false)
     {
-        $fields = Schema::getColumnListing($this->getTable());
+        $fields = Schema::getColumnListing($this->model->getTable());
         $unavailable_fields = [
-            $this->primaryKey,
+            $this->model->primaryKey,
             self::CREATED_AT,
             self::UPDATED_AT,
-            $this->getDeletedAtColumn(),
+            $this->model->getDeletedAtColumn(),
         ];
 
         return $available ? array_diff($fields, $unavailable_fields) : $fields;
@@ -41,12 +41,12 @@ trait Curd
     {
         $fields = $this->getFields(true);
         $data = array_intersect_key(array_combine($fields, $fields), $param);
-        return $this->create($data);
+        return $this->model->create($data);
     }
 
     public function read($id)
     {
-        return $this->where($this->primaryKey, $id)->find();
+        return $this->model->where($this->model->primaryKey, $id)->find();
     }
 
     public function edit($param)
@@ -55,12 +55,12 @@ trait Curd
         $fields = $this->getFields(true);
         $data = array_intersect_key(array_combine($fields, $fields), $param);
         
-        return $this->where($this->primaryKey, $id)->update($data);
+        return $this->model->where($this->model->primaryKey, $id)->update($data);
     }
 
-    public function drop($param)
+    public function delete($param)
     {
         $id = (array) $param['id'];
-        return $this->whereIn($this->primaryKey, $id)->delete();
+        return $this->model->whereIn($this->model->primaryKey, $id)->delete();
     }
 }

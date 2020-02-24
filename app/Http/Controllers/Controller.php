@@ -18,12 +18,4 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    
-    /**
-     * 构造方法
-     */
-    public function __construct()
-    {
-        
-    }
 }

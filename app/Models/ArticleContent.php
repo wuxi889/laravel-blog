@@ -5,10 +5,10 @@
  * @Date: 2020-02-24 14:11:13
  * @LastEditors: uSee
  * @LastEditTime: 2020-02-24 14:12:54
- * @FilePath: \laravel-blog\app\Model\ArticleContent.php
+ * @FilePath: \laravel-blog\app\Models\ArticleContent.php
  */
 
-namespace App\Model;
+namespace App\Models;
 
 class ArticleContent extends BaseModel
 {

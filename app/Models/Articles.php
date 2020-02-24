@@ -5,17 +5,20 @@
  * @Date: 2020-02-24 13:26:52
  * @LastEditors: uSee
  * @LastEditTime: 2020-02-24 17:09:57
- * @FilePath: \laravel-blog\app\Model\Articles.php
+ * @FilePath: \laravel-blog\app\Models\Articles.php
  */
 
-namespace App\Model;
+namespace App\Models;
 
 class Articles extends BaseModel
 {
     protected $table = 'articles';
+    protected $with = [
+        'content'
+    ];
 
     public function content()
     {
-        return $this->hasOne('App\Model\ArticleContent', 'article_id', 'id');
+        return $this->hasOne('App\Models\ArticleContent', 'article_id', 'id');
     }
 }

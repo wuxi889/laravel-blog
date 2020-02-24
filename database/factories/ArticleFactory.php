@@ -10,11 +10,9 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Model\Articles;
-use App\Model\ArticleContent;
 use Faker\Generator as Faker;
 
-$factory->define(Articles::class, function (Faker $faker) {
+$factory->define(\App\Models\Articles::class, function (Faker $faker) {
     return [
         'author' => $faker->name(),
         'original' => $faker->numberBetween(0, 1),
@@ -24,8 +22,8 @@ $factory->define(Articles::class, function (Faker $faker) {
 });
 
 /**
- * 回调关联
+ * 回调关联e
  */
-$factory->afterCreating(Articles::class, function ($article, $faker) {
-    $article->content()->save(factory(ArticleContent::class)->make());
+$factory->afterCreating(\App\Models\Articles::class, function ($article, $faker) {
+    $article->content()->save(factory(\App\Models\ArticleContent::class)->make());
 });

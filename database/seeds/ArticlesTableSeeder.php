@@ -8,7 +8,6 @@
  * @FilePath: \laravel-blog\database\seeds\ArticlesTableSeeder.php
  */
 
-use App\Model\Articles;
 use Illuminate\Database\Seeder;
 
 class ArticlesTableSeeder extends Seeder
@@ -20,6 +19,6 @@ class ArticlesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Articles::class)->times(20)->create();
+        factory(\App\Models\Articles::class)->times(20)->create();
     }
 }

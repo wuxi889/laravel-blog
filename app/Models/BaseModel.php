@@ -5,18 +5,17 @@
  * @Date: 2020-02-24 13:26:57
  * @LastEditors: uSee
  * @LastEditTime: 2020-02-24 17:14:02
- * @FilePath: \laravel-blog\app\Model\BaseModel.php
+ * @FilePath: \laravel-blog\app\Models\BaseModel.php
  */
 
-namespace App\Model;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Model\Traits\Curd;
 
 class BaseModel extends Model
 {
-    use Curd, SoftDeletes;
+    use SoftDeletes;
 
     /**
      * 构造方法
@@ -27,5 +26,6 @@ class BaseModel extends Model
      */
     public function __construct()
     {
+        
     }
 }

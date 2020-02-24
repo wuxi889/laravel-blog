@@ -10,9 +10,9 @@
 
 namespace App\Http\Controllers\Index;
 
-use App\Http\Controllers\Controller;
+use App\Models\Articles;
 
-class Index extends Controller
+class Index extends IndexBaseController
 {
     /**
      * 主页
@@ -21,6 +21,14 @@ class Index extends Controller
      */
     public function index()
     {
+        $a = [
+            'author' => 'test',
+            'original' => 1,
+            'title' => 'fdns nfod nosncocso hcjrucma  d',
+            'description' => 'fjdn iwhni 8dj b9snso j oso ojoajofus98fsn nlaodifn sdfspoias no afdsfsd f',
+        ];
+        $m = new Articles();
+        $m->create($a);
         return view('index/index');
     }
 

@@ -5,10 +5,10 @@
  * @Date: 2020-02-24 13:29:40
  * @LastEditors: uSee
  * @LastEditTime: 2020-02-24 13:29:50
- * @FilePath: \laravel-blog\app\Model\Resources.php
+ * @FilePath: \laravel-blog\app\Models\Resources.php
  */
 
-namespace App\Model;
+namespace App\Models;
 
 class Resources extends BaseModel
 {

@@ -5,10 +5,10 @@
  * @Date: 2020-02-24 13:30:24
  * @LastEditors: uSee
  * @LastEditTime: 2020-02-24 13:30:24
- * @FilePath: \laravel-blog\app\Model\Comments.php
+ * @FilePath: \laravel-blog\app\Models\Comments.php
  */
 
-namespace App\Model;
+namespace App\Models;
 
 class Comments extends BaseModel
 {

@@ -10,9 +10,7 @@
 
 namespace App\Http\Controllers\Index;
 
-use App\Http\Controllers\Controller;
-
-class Tag extends Controller
+class Tag extends IndexBaseController
 {
     //
 }
