@@ -1,20 +1,27 @@
 <?php
+/*
+ * @Description: Index 控制器
+ * @Author: uSee
+ * @Date: 2020-02-24 12:53:40
+ * @LastEditors: uSee
+ * @LastEditTime: 2020-02-24 17:49:32
+ * @FilePath: \laravel-blog\app\Http\Controllers\Index\Index.php
+ */
 
 namespace App\Http\Controllers\Index;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
-class StaticPagesController extends Controller
+class Index extends Controller
 {
     /**
      * 主页
      *
      * @return void
      */
-    public function home()
+    public function index()
     {
-        die('fdfsd');
+        return view('index/index');
     }
 
     /**
@@ -24,17 +31,6 @@ class StaticPagesController extends Controller
      */
     public function about()
     {
-        
-    }
-
-    /**
-     * 帮助
-     *
-     * @return void
-     */
-    public function help()
-    {
-        
     }
 
     /**
@@ -44,6 +40,5 @@ class StaticPagesController extends Controller
      */
     public function contact()
     {
-
     }
 }
