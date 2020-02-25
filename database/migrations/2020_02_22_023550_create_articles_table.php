@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 13:28:38
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-24 14:49:27
+ * @LastEditTime: 2020-02-25 11:05:13
  * @FilePath: \laravel-blog\database\migrations\2020_02_22_023550_create_articles_table.php
  */
 
@@ -24,6 +24,7 @@ class CreateArticlesTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('文章ID');
             $table->string('author', 31)->default('')->comment('作者');
+            $table->unsignedTinyInteger('category_id')->default(0)->comment('文章分类');
             $table->unsignedTinyInteger('original')->default(1)->comment('是否原创 [0:否;1:是;]');
             $table->string('title', 127)->unique()->default('')->comment('分类名称');
             $table->string('description', 255)->default('')->comment('分类名称');

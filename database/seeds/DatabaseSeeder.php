@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 13:58:03
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-24 17:32:53
+ * @LastEditTime: 2020-02-25 15:16:26
  * @FilePath: \laravel-blog\database\seeds\DatabaseSeeder.php
  */
 
@@ -23,7 +23,11 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
         $this->call([
             // UsersTableSeeder::class,
-            ArticlesTableSeeder::class
+            ArticlesTableSeeder::class,
+            CategoryTableSeder::class,
+            TagsTableSeder::class,
+            ArticleTagsTableSeeder::class,
+            ArticleContentsTableSeder::class,
         ]);
     }
 }

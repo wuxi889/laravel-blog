@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 14:44:45
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-24 17:24:05
+ * @LastEditTime: 2020-02-25 14:44:09
  * @FilePath: \laravel-blog\database\seeds\ArticlesTableSeeder.php
  */
 
@@ -19,6 +19,6 @@ class ArticlesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Articles::class)->times(20)->create();
+        factory(\App\Models\Articles::class)->times(300)->create();
     }
 }

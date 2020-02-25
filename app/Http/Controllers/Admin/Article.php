@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Admin\AdminBaseController;
-
 class Article extends AdminBaseController
 {
-    //
+    public function index()
+    {
+        return view('admin.article.index');
+    }
 }

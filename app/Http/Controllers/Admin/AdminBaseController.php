@@ -10,11 +10,13 @@ class AdminBaseController extends Controller
 {
     use Curd;
     
+    protected $request;
+
     /**
      * 构造方法
      */
-    public function __construct()
+    public function __construct(Request $request)
     {
-        
+        $this->request = $request;
     }
 }

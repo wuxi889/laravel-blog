@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 14:19:53
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-24 14:56:11
+ * @LastEditTime: 2020-02-25 16:01:55
  * @FilePath: \laravel-blog\database\migrations\2020_02_22_023555_create_article_contents_table.php
  */
 
@@ -27,6 +27,7 @@ class CreateArticleContentsTable extends Migration
             $table->unsignedBigInteger('article_id')->default(0)->comment('文章ID');
             $table->text('content')->comment('文章内容');
             $table->timestamps();
+            $table->softDeletes();
             $table->foreign('article_id', 'article_foreign')->references('id')->on('articles');
         });
     }

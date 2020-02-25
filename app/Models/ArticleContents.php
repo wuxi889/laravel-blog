@@ -4,13 +4,13 @@
  * @Author: uSee
  * @Date: 2020-02-24 14:11:13
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-24 14:12:54
- * @FilePath: \laravel-blog\app\Models\ArticleContent.php
+ * @LastEditTime: 2020-02-25 13:28:25
+ * @FilePath: \laravel-blog\app\Models\ArticleContents.php
  */
 
 namespace App\Models;
 
-class ArticleContent extends BaseModel
+class ArticleContents extends BaseModel
 {
     /**
      * 关联文章方法

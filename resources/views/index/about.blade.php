@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Weibo App</title>
-</head>
-<body>
-  <h1>主页</h1>
-</body>
-</html>
+@extends('layouts.header')
+@section('content')
+  <div>
+    关于
+  </div>
+@stop

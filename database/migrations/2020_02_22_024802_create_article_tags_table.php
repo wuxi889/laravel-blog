@@ -1,18 +1,18 @@
 <?php
 /*
- * @Description: 
+ * @Description:
  * @Author: uSee
- * @Date: 2020-02-24 14:55:18
+ * @Date: 2020-02-24 14:19:33
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-24 14:55:18
- * @FilePath: \laravel-blog\database\migrations\2020_02_22_024750_create_article_category_table.php
+ * @LastEditTime: 2020-02-25 13:27:09
+ * @FilePath: \laravel-blog\database\migrations\2020_02_22_024802_create_article_tag_table.php
  */
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArticleCategoryTable extends Migration
+class CreateArticleTagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -21,9 +21,9 @@ class CreateArticleCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('article_category', function (Blueprint $table) {
+        Schema::create('article_tags', function (Blueprint $table) {
             $table->unsignedBigInteger('article_id')->default(0)->comment('文章ID');;
-            $table->unsignedBigInteger('category_id')->default(0)->comment('分类ID');;
+            $table->unsignedBigInteger('tag_id')->default(0)->comment('标签ID');;
         });
     }
 
@@ -34,6 +34,6 @@ class CreateArticleCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('article_category');
+        Schema::dropIfExists('article_tags');
     }
 }
