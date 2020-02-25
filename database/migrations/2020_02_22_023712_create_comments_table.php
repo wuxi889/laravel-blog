@@ -23,7 +23,7 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('评论ID');
-            $table->unsignedBigInteger('article_id')->default(0)->comment('文章ID');
+            $table->unsignedBigInteger('article_id')->default(0)->comment('文章ID')->index();
             $table->unsignedBigInteger('parent_id')->default(0)->comment('父级ID');
             $table->string('ip', 63)->default('')->comment('IP地址');
             $table->string('comment', 255)->default('')->comment('评论内容');

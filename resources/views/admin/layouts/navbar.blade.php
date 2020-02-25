@@ -1,22 +1,22 @@
 <ul class="navbar-nav mr-auto">
-    <li class="nav-item"><a class="nav-link" href="/">首页</a></li>
     @auth
-        <li @if (Request::is('admin/post*')) class="nav-item active" @else class="nav-item" @endif>
-            <a class="nav-link" href="/admin/post">文章</a>
+        <li @if (Request::is('admin/article*')) class="nav-item active" @else class="nav-item" @endif>
+            <a class="nav-link" href="/article">文章</a>
         </li>
         <li @if (Request::is('admin/tag*')) class="nav-item active" @else class="nav-item" @endif>
-            <a class="nav-link" href="/admin/category">分类</a>
+            <a class="nav-link" href="/category">分类</a>
         </li>
         <li @if (Request::is('admin/tag*')) class="nav-item active" @else class="nav-item" @endif>
-            <a class="nav-link" href="/admin/tag">标签</a>
+            <a class="nav-link" href="/tag">标签</a>
         </li>
         <li @if (Request::is('admin/resource*')) class="nav-item active" @else class="nav-item" @endif>
-            <a class="nav-link" href="/admin/resource">资源</a>
+            <a class="nav-link" href="/resource">资源</a>
         </li>
     @endauth
 </ul>
 
 <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="{{ env('APP_URL') }}" target="_blank">站点首页</a></li>
     @guest
         <li class="nav-item"><a class="nav-link" href="/login">登录</a></li>
     @else

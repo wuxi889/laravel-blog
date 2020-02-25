@@ -22,8 +22,8 @@ class CreateArticleTagsTable extends Migration
     public function up()
     {
         Schema::create('article_tags', function (Blueprint $table) {
-            $table->unsignedBigInteger('article_id')->default(0)->comment('文章ID');;
-            $table->unsignedBigInteger('tag_id')->default(0)->comment('标签ID');;
+            $table->unsignedBigInteger('article_id')->default(0)->comment('文章ID')->index();
+            $table->unsignedBigInteger('tag_id')->default(0)->comment('标签ID')->index();
         });
     }
 

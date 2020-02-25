@@ -36,8 +36,19 @@ Route::group(['domain' => env('APP_URL'), 'namespace' => 'Index'], function () {
 });
 
 // 后台路由
-Route::group(['domain' => env('APP_ADMIN_URL'), 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
-    Route::get('/', 'Article@index');
+Route::group(['domain' => env('APP_ADMIN_URL'), 'namespace' => 'Admin'], function () {
+    Route::get('/', function () {
+        return redirect('/article');
+    });
+
+    // 需要验证登录
+    Route::middleware('auth')->group(function () {
+        Route::resource('/article', 'Article');
+        Route::resource('/category', 'Category');
+        Route::resource('/tag', 'Tag');
+        Route::resource('/comment', 'Comment');
+        Route::resource('/resource', 'Resource');
+    });
 
     // 登录登出操作
     Route::get('/login', 'Auth@showLogin')->name('login');

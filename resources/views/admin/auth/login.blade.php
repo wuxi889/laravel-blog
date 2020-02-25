@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('admin.layouts.public')
 
 @section('content')
     <div class="container">
@@ -11,7 +11,7 @@
                         @include('admin.layouts.errors')
 
                         <form role="form" method="POST" action="{{ url('/login') }}">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            @csrf
 
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label text-md-right">邮箱</label>

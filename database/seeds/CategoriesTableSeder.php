@@ -5,12 +5,12 @@
  * @Date: 2020-02-25 14:58:40
  * @LastEditors: uSee
  * @LastEditTime: 2020-02-25 14:59:37
- * @FilePath: \laravel-blog\database\seeds\CategoryTableSeder.php
+ * @FilePath: \laravel-blog\database\seeds\CategoriesTableSeder.php
  */
 
 use Illuminate\Database\Seeder;
 
-class CategoryTableSeder extends Seeder
+class CategoriesTableSeder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -22,9 +22,9 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
         $this->call([
-            // UsersTableSeeder::class,
+            UsersTableSeeder::class,
             ArticlesTableSeeder::class,
-            CategoryTableSeder::class,
+            CategoriesTableSeder::class,
             TagsTableSeder::class,
             ArticleTagsTableSeeder::class,
             ArticleContentsTableSeder::class,

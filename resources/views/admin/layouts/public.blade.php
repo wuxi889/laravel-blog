@@ -16,7 +16,7 @@
 {{-- Navigation Bar --}}
 <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
     <div class="container">
-        <a class="navbar-brand mr-auto mr-lg-0" href="#">{{ config('blog.title') }} 后台</a>
+        <a class="navbar-brand mr-auto mr-lg-0" href="{{ env('APP_ADMIN_URL') }}">{{ config('blog.title') }} 后台</a>
         <button class="navbar-toggler p-0 border-0" type="button" data-toggle="collapse" data-target="#navbar-menu"
                 aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

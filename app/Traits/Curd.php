@@ -34,7 +34,7 @@ trait Curd
 
     public function index()
     {
-
+        return view(sprintf('admin.%s.index', $this->getController(true)));
     }
 
     public function create($param)
@@ -44,7 +44,12 @@ trait Curd
         return $this->model->create($data);
     }
 
-    public function read($id)
+    public function store()
+    {
+
+    }
+
+    public function show($id)
     {
         return $this->model->where($this->model->primaryKey, $id)->find();
     }
@@ -58,9 +63,13 @@ trait Curd
         return $this->model->where($this->model->primaryKey, $id)->update($data);
     }
 
-    public function delete($param)
+    public function update()
     {
-        $id = (array) $param['id'];
+
+    }
+
+    public function destroy($id)
+    {
         return $this->model->whereIn($this->model->primaryKey, $id)->delete();
     }
 }

@@ -24,7 +24,7 @@ class CreateArticleContentsTable extends Migration
     {
         Schema::create('article_contents', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('内容ID');
-            $table->unsignedBigInteger('article_id')->default(0)->comment('文章ID');
+            $table->unsignedBigInteger('article_id')->default(0)->comment('文章ID')->index();
             $table->text('content')->comment('文章内容');
             $table->timestamps();
             $table->softDeletes();

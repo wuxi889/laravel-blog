@@ -12,5 +12,8 @@ namespace App\Models;
 
 class Tags extends BaseModel
 {
-    //
+    public function articles()
+    {
+        return $this->hasManyThrough('App\Models\Articles', 'App\Models\ArticleTags', 'tag_id', 'id', 'id', 'article_id');
+    }
 }

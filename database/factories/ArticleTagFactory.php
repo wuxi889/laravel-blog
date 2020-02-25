@@ -16,6 +16,6 @@ use Faker\Generator as Faker;
 $factory->define(ArticleTags::class, function (Faker $faker) {
     return [
         'article_id' => rand(1, 300),
-        'tag_id' => rand(1, 10)
+        'tag_id' => rand(1, 20)
     ];
 });
