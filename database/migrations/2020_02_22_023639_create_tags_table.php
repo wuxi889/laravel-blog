@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 14:51:15
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-24 14:51:15
+ * @LastEditTime: 2020-02-26 15:30:19
  * @FilePath: \laravel-blog\database\migrations\2020_02_22_023639_create_tags_table.php
  */
 
@@ -23,7 +23,7 @@ class CreateTagsTable extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('标签ID');
-            $table->string('name')->unique()->default('')->comment('标签名称');
+            $table->string('name', 15)->unique()->default('')->comment('标签名称');
             $table->timestamps();
             $table->softDeletes();
         });

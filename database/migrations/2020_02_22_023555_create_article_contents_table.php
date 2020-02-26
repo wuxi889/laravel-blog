@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 14:19:53
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-25 16:01:55
+ * @LastEditTime: 2020-02-26 15:17:07
  * @FilePath: \laravel-blog\database\migrations\2020_02_22_023555_create_article_contents_table.php
  */
 
@@ -24,7 +24,7 @@ class CreateArticleContentsTable extends Migration
     {
         Schema::create('article_contents', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('内容ID');
-            $table->unsignedBigInteger('article_id')->default(0)->comment('文章ID')->index();
+            $table->unsignedBigInteger('article_id')->unique()->default(0)->comment('文章ID')->index();
             $table->text('content')->comment('文章内容');
             $table->timestamps();
             $table->softDeletes();

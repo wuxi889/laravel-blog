@@ -4,14 +4,18 @@
  * @Author: uSee
  * @Date: 2020-02-24 14:11:13
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-25 13:28:25
+ * @LastEditTime: 2020-02-26 17:26:15
  * @FilePath: \laravel-blog\app\Models\ArticleContents.php
  */
 
 namespace App\Models;
 
+use App\Services\MarkdownService;
+
 class ArticleContents extends BaseModel
 {
+    protected $fillable = ['article_id', 'content'];
+
     /**
      * 关联文章方法
      *
@@ -23,5 +27,11 @@ class ArticleContents extends BaseModel
     public function article()
     {
         return $this->belongsTo('App\Model\Articles', 'article_id', 'id');
+    }
+
+    public function setContentAttribute($value)
+    {
+        // $markdown = new MarkdownService();
+        // $this->attributes['content'] = $markdown->toHTML($value);
     }
 }

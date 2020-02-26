@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 13:26:52
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-25 14:49:09
+ * @LastEditTime: 2020-02-26 16:59:53
  * @FilePath: \laravel-blog\app\Models\Articles.php
  */
 
@@ -35,12 +35,13 @@ class Articles extends BaseModel
      *
      * @Description: 
      * @Author: uSee | wuxi889@vip.qq.com
-     * @DateTime 2020-02-25
+     * @DateTime 2020-02-26
+     * @param integer $rows
      * @return static
      */
-    public static function getNewest()
+    public static function getNewest(int $rows = 10)
     {
-        return static::orderBy('created_at', 'DESC')->get();
+        return static::orderBy('created_at', 'DESC')->limit($rows)->get();
     }
 
     /**

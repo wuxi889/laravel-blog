@@ -40,14 +40,44 @@
                                 <a href="/category/{{ $category->id }}/edit" class="btn btn-xs btn-info">
                                     <i class="fa fa-edit"></i> 编辑
                                 </a>
-                                <a href="/category/{{ $category->id }}/destroy" class="btn btn-xs btn-info">
-                                    <i class="fa fa-times"></i> 删除
-                                </a>
+                                <button type="button" class="btn btn-danger btn-md" data-toggle="modal" data-target="#modal-delete" onclick="changeId({{ $category->id }})">
+                                    <i class="fa fa-times"></i>
+                                    删除
+                                </button>
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
+            </div>
+        </div>
+
+        {{-- 确认删除 --}}
+        <div class="modal fade" id="modal-delete" tabIndex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            ×
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="lead">
+                            <i class="fa fa-question-circle fa-lg"></i>
+                            确定要删除这个分类吗?
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <form method="POST" id="form-delete" action="/article/">
+                            @csrf
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fa fa-times-circle"></i> 确认
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -58,5 +88,9 @@
         $(function () {
             $("#tags-table").DataTable({});
         });
+
+        function changeId(id) {
+            $("#form-delete").attr('action', '/category/' + id)
+        }
     </script>
 @stop

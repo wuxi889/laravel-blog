@@ -4,12 +4,13 @@
  * @Author: uSee
  * @Date: 2020-02-24 13:39:43
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-24 17:16:46
+ * @LastEditTime: 2020-02-26 15:24:38
  * @FilePath: \laravel-blog\app\Traits\Curd.php
  */
 
 namespace App\Traits;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 
 trait Curd
@@ -18,9 +19,9 @@ trait Curd
     {
         $fields = Schema::getColumnListing($this->model->getTable());
         $unavailable_fields = [
-            $this->model->primaryKey,
-            self::CREATED_AT,
-            self::UPDATED_AT,
+            $this->model->getKeyName(),
+            $this->model::CREATED_AT,
+            $this->model::UPDATED_AT,
             $this->model->getDeletedAtColumn(),
         ];
 
@@ -34,42 +35,51 @@ trait Curd
 
     public function index()
     {
-        return view(sprintf('admin.%s.index', $this->getController(true)));
+        $list = $this->model->orderBy($this->model->getKeyName(), 'DESC')->get();
+        return view(sprintf('admin.%s.index', $this->getController(true)), compact('list'));
     }
 
-    public function create($param)
+    public function create()
     {
         $fields = $this->getFields(true);
-        $data = array_intersect_key(array_combine($fields, $fields), $param);
-        return $this->model->create($data);
+        $data = [];
+        array_map(function ($v) use (&$data) {
+            $data[$v] = '';
+        }, $fields);
+        return view(sprintf('admin.%s.create', $this->getController(true)), compact('data'));
     }
 
-    public function store()
+    /**
+     * 过滤字段
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-26
+     * @param array $params
+     * @return array
+     */
+    public function filterFields(array $params): array
     {
-
-    }
-
-    public function show($id)
-    {
-        return $this->model->where($this->model->primaryKey, $id)->find();
-    }
-
-    public function edit($param)
-    {
-        $id = $param[$this->primaryKey] ?? 0;
         $fields = $this->getFields(true);
-        $data = array_intersect_key(array_combine($fields, $fields), $param);
+        return array_intersect_key(array_combine($fields, $fields), $params);
+    }
+
+    public function show()
+    {
         
-        return $this->model->where($this->model->primaryKey, $id)->update($data);
     }
 
-    public function update()
+    public function edit($id)
     {
-
+        $data = $this->model->findOrFail($id);
+        return view(sprintf('admin.%s.edit', $this->getController(true)), compact('data'));
     }
 
     public function destroy($id)
     {
-        return $this->model->whereIn($this->model->primaryKey, $id)->delete();
+        if($this->model->whereIn($this->model->getKeyName(), (array) $id)->delete()) {
+            return redirect('/' . $this->getController(true))->with('success', '对象删除成功');
+        }
+        return redirect('/' . $this->getController(true))->with('error', '对象删除失败');
     }
 }

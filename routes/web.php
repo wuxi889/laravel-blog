@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 12:52:42
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-25 18:08:31
+ * @LastEditTime: 2020-02-26 18:15:17
  * @FilePath: \laravel-blog\routes\web.php
  */
 
@@ -26,13 +26,16 @@ Route::group(['domain' => env('APP_URL'), 'namespace' => 'Index'], function () {
     Route::get('/contact', 'Index@contact');
 
     // 文章
-    Route::get('/article/{id}', 'Article@index')->where('id', '[1-9][0-9]*')->name('article.content');
+    Route::get('/article/{id}', 'Article@index')->where('id', '[1-9][0-9]*')->name('index.article.content');
+
+    // 提交评论
+    Route::post('/article/{id}', 'Article@comment')->where('id', '[1-9][0-9]*');
 
     // 分类
-    Route::get('/category/{id}', 'Category@index')->where('id', '[1-9][0-9]*')->name('category.index');
+    Route::get('/category/{id}', 'Category@index')->where('id', '[1-9][0-9]*')->name('index.category.index');
     
     // 标签
-    Route::get('/tag/{id}', 'Tag@index')->where('id', '[1-9][0-9]*')->name('tag.index');
+    Route::get('/tag/{id}', 'Tag@index')->where('id', '[1-9][0-9]*')->name('index.tag.index');
 });
 
 // 后台路由
@@ -48,6 +51,13 @@ Route::group(['domain' => env('APP_ADMIN_URL'), 'namespace' => 'Admin'], functio
         Route::resource('/tag', 'Tag');
         Route::resource('/comment', 'Comment');
         Route::resource('/resource', 'Resource');
+        
+        // 资源控制器
+        Route::get('/resource', 'Resource@index');
+        Route::post('/resource/file', 'Resource@uploadFile');
+        Route::delete('/resource/file', 'Resource@deleteFile');
+        Route::post('/resource/folder', 'Resource@createFolder');
+        Route::delete('/resource/folder', 'Resource@deleteFolder');
     });
 
     // 登录登出操作

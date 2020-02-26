@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 12:53:40
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-25 15:35:12
+ * @LastEditTime: 2020-02-26 17:00:03
  * @FilePath: \laravel-blog\app\Http\Controllers\Index\Index.php
  */
 
@@ -23,12 +23,12 @@ class Index extends IndexBaseController
     public function index()
     {
         // 文章列表
-        $articles = Articles::getNewest();
+        $articles = Articles::getNewest(config('blog.rows'));
 
         // 分类列表
         $categories = Categories::getList();
 
-        return view('index/index');
+        return view('index/index', compact('articles', 'categories'));
     }
 
     /**

@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 14:46:53
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-25 11:18:40
+ * @LastEditTime: 2020-02-26 15:28:09
  * @FilePath: \laravel-blog\database\migrations\2020_02_22_023528_create_categories_table.php
  */
 
@@ -23,7 +23,7 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('分类ID');
-            $table->string('name')->unique()->default('')->comment('分类名称');
+            $table->string('name', 31)->unique()->default('')->comment('分类名称');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -2,8 +2,8 @@
 <html>
   <head>
     <title>@yield('title', 'Laravel Blog') - {{ config('blog.title') }}</title>
-    <meta name="keywords" content="@yield('keywords', 'Laravel Blog Keywords')">
-    <meta name="description" content="@yield('description', 'Laravel Blog description...')">
+    <meta name="keywords" content="{{ config('blog.keywords') }}">
+    <meta name="description" content="{{ config('blog.description') }}">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
   </head>
   <body>

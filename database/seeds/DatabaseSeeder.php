@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 13:58:03
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-25 15:16:26
+ * @LastEditTime: 2020-02-26 17:36:44
  * @FilePath: \laravel-blog\database\seeds\DatabaseSeeder.php
  */
 
@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             TagsTableSeder::class,
             ArticleTagsTableSeeder::class,
             ArticleContentsTableSeder::class,
+            CommentsTableSeeder::class,
         ]);
     }
 }
