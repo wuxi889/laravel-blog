@@ -18,6 +18,15 @@ class Resource extends Controller
         $this->manager = $manager;
     }
 
+    /**
+     * 目录文件列表
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @param Request $request
+     * @return void
+     */
     public function index(Request $request)
     {
         $folder = $request->get('folder');
@@ -28,6 +37,12 @@ class Resource extends Controller
 
     /**
      * 创建新目录
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @param ResourceCreateFolderRequest $request
+     * @return void
      */
     public function createFolder(ResourceCreateFolderRequest $request)
     {
@@ -50,6 +65,12 @@ class Resource extends Controller
 
     /**
      * 删除文件
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @param Request $request
+     * @return void
      */
     public function deleteFile(Request $request)
     {
@@ -72,6 +93,12 @@ class Resource extends Controller
 
     /**
      * 删除目录
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @param Request $request
+     * @return void
      */
     public function deleteFolder(Request $request)
     {
@@ -94,6 +121,12 @@ class Resource extends Controller
 
     /**
      * 上传文件
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @param ResourceFileRequest $request
+     * @return void
      */
     public function uploadFile(ResourceFileRequest $request)
     {

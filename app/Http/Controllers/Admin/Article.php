@@ -17,6 +17,14 @@ class Article extends AdminBaseController
         $this->model = new Articles();
     }
 
+    /**
+     * 创建
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @return void
+     */
     public function create()
     {
         // 基本字段
@@ -32,6 +40,15 @@ class Article extends AdminBaseController
         return view('admin.article.create', compact('data', 'categories'));
     }
 
+    /**
+     * 更新
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @param ArticleCreateRequest $request
+     * @return void
+     */
     public function store(ArticleCreateRequest $request)
     {
         // 获取表字段
@@ -64,7 +81,16 @@ class Article extends AdminBaseController
         }
     }
 
-    public function edit($id)
+    /**
+     * 编辑
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @param [int] $id
+     * @return void
+     */
+    public function edit(int $id)
     {
         // 查询文章详情
         $article = $this->model->findOrFail($id);
@@ -91,7 +117,17 @@ class Article extends AdminBaseController
         return view('admin.article.edit', compact('data', 'categories'));
     }
 
-    public function update(ArticleUpdateRequest $request, $id)
+    /**
+     * 更新
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @param ArticleUpdateRequest $request
+     * @param [int] $id
+     * @return void
+     */
+    public function update(ArticleUpdateRequest $request, int $id)
     {
         $this->model = $this->model->findOrFail($id);
 

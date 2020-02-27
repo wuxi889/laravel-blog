@@ -14,6 +14,14 @@ class Category extends AdminBaseController
         $this->model = new Categories();
     }
 
+    /**
+     * 分类列表
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @return void
+     */
     public function index()
     {
         $categories = $this->model
@@ -26,6 +34,15 @@ class Category extends AdminBaseController
         return view('admin.category.index', compact('categories'));
     }
 
+    /**
+     * 新增
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @param CategoryCreateRequest $request
+     * @return void
+     */
     public function store(CategoryCreateRequest $request)
     {
         // 获取表字段
@@ -41,7 +58,17 @@ class Category extends AdminBaseController
             :redirect('/category')->with('error', '分类 [' . $this->model->name . '] 创建失败.');
     }
 
-    public function update(CategoryUpdateRequest $request, $id)
+    /**
+     * 更新
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @param CategoryUpdateRequest $request
+     * @param [int] $id
+     * @return void
+     */
+    public function update(CategoryUpdateRequest $request, int $id)
     {
         $this->model = $this->model->findOrFail($id);
 
@@ -58,6 +85,15 @@ class Category extends AdminBaseController
             :redirect('/category')->with('error', '分类 [' . $this->model->name . '] 修改失败.');
     }
 
+    /**
+     * 删除
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @param [mixed] $id
+     * @return void
+     */
     public function destroy($id)
     {
         if($this->model->whereIn($this->model->getKeyName(), (array) $id)->delete()) {

@@ -4,17 +4,25 @@
  * @Author: uSee
  * @Date: 2020-02-24 13:39:43
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-26 15:24:38
+ * @LastEditTime: 2020-02-27 15:38:27
  * @FilePath: \laravel-blog\app\Traits\Curd.php
  */
 
 namespace App\Traits;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 
 trait Curd
 {
+    /**
+     * 获取表字段
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @param boolean $available 是否返回可用字段
+     * @return array
+     */
     public function getFields($available = false)
     {
         $fields = Schema::getColumnListing($this->model->getTable());
@@ -28,17 +36,41 @@ trait Curd
         return $available ? array_diff($fields, $unavailable_fields) : $fields;
     }
 
+    /**
+     * 创建查询参数
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @return void
+     */
     public function buildParam()
     {
 
     }
 
+    /**
+     * 列表
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @return
+     */
     public function index()
     {
         $list = $this->model->orderBy($this->model->getKeyName(), 'DESC')->get();
         return view(sprintf('admin.%s.index', $this->getController(true)), compact('list'));
     }
 
+    /**
+     * 新增页面
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @return
+     */
     public function create()
     {
         $fields = $this->getFields(true);
@@ -64,17 +96,43 @@ trait Curd
         return array_intersect_key(array_combine($fields, $fields), $params);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @return void
+     */
     public function show()
     {
         
     }
 
-    public function edit($id)
+    /**
+     * 显示编辑页面
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @param [int] $id
+     * @return
+     */
+    public function edit(int $id)
     {
         $data = $this->model->findOrFail($id);
         return view(sprintf('admin.%s.edit', $this->getController(true)), compact('data'));
     }
 
+    /**
+     * 删除
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @param [mixed] $id
+     * @return
+     */
     public function destroy($id)
     {
         if($this->model->whereIn($this->model->getKeyName(), (array) $id)->delete()) {

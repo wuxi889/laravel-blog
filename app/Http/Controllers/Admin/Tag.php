@@ -14,6 +14,14 @@ class Tag extends AdminBaseController
         $this->model = new Tags();
     }
 
+    /**
+     * 列表
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @return void
+     */
     public function index()
     {
         $tags = $this->model->withCount('articles')->orderBy($this->model->getKeyName(), 'DESC')->get();
@@ -21,6 +29,15 @@ class Tag extends AdminBaseController
         return view('admin.tag.index', compact('tags'));
     }
 
+    /**
+     * 新增
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @param TagCreateRequest $request
+     * @return void
+     */
     public function store(TagCreateRequest $request)
     {
         // 获取表字段
@@ -36,7 +53,17 @@ class Tag extends AdminBaseController
             :redirect('/tag')->with('error', '标签 [' . $this->model->name . '] 创建失败.');
     }
 
-    public function update(TagUpdateRequest $request, $id)
+    /**
+     * 更新
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @param TagUpdateRequest $request
+     * @param [int] $id
+     * @return void
+     */
+    public function update(TagUpdateRequest $request, int $id)
     {
         $this->model = $this->model->findOrFail($id);
 
@@ -53,7 +80,16 @@ class Tag extends AdminBaseController
             :redirect('/tag')->with('error', '标签 [' . $this->model->name . '] 修改失败.');
     }
 
-    public function destroy($id)
+    /**
+     * 删除
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @param [int] $id
+     * @return void
+     */
+    public function destroy(int $id)
     {
         if($this->model->whereIn($this->model->getKeyName(), (array) $id)->delete()) {
             ArticleTags::where('tag_id', $id)->delete();

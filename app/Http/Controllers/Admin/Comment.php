@@ -12,6 +12,16 @@ class Comment extends AdminBaseController
         $this->model = new Comments();
     }
 
+    /**
+     * 更新
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-27
+     * @param CommentValidRequest $request
+     * @param integer $id
+     * @return void
+     */
     public function update(CommentValidRequest $request, int $id)
     {
         $comment = $this->model->find($id);
