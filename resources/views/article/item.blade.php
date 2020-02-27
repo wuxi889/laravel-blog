@@ -11,7 +11,7 @@
       {{ $article->author }}
     </h5>
     <h5>发布时间： {{ $article->created_at }}</h5>
-    <h5>文章分类： <a href="{{ route('index.category.index', ['id' => $article->category_id]) }}">{{ $article->category->name }}</a></h5>
+    <h5>文章分类： <a href="{{ route('category.index', ['id' => $article->category_id]) }}">{{ $article->category->name }}</a></h5>
     <hr>
     文章摘要: {{ $article->description }}
     <hr>
@@ -24,7 +24,7 @@
       标签
     </h5>
       @foreach ($article->tags as $tag)
-        <a href="{{ route('index.tag.index', ['id' => $tag->id]) }}">{{ $tag->name }}</a> &nbsp;
+        <a href="{{ route('tag.list', ['id' => $tag->id]) }}">{{ $tag->name }}</a> &nbsp;
       @endforeach
     <hr>
     <h5>

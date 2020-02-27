@@ -7,7 +7,7 @@
       <ul class="list-group">
     @foreach ($articles as $article)
       <li>
-        <a href="{{ route('index.article.content', ['id' => $article->id]) }}"><h5>{{ $article->title }}</h5></a>
+        <a href="{{ route('article.content', ['id' => $article->id]) }}"><h5>{{ $article->title }}</h5></a>
         <span class="badge">{{ $article->created_at }}</span>
                   <p class="list-group-item-text">
                       {{ $article->description }}

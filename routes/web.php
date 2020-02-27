@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 12:52:42
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-26 18:15:17
+ * @LastEditTime: 2020-02-27 17:03:48
  * @FilePath: \laravel-blog\routes\web.php
  */
 
@@ -20,26 +20,26 @@
 */
 
 // 前台路由
-Route::group(['domain' => env('APP_URL'), 'namespace' => 'Index'], function () {
+Route::group(['domain' => env('APP_URL'), 'namespace' => 'Index', 'name' => 'index'], function () {
     Route::get('/', 'Index@index');
     Route::get('/about', 'Index@about');
     Route::get('/contact', 'Index@contact');
 
     // 文章
-    Route::get('/article/{id}', 'Article@index')->where('id', '[1-9][0-9]*')->name('index.article.content');
+    Route::get('/article/{id}', 'Article@index')->where('id', '[1-9][0-9]*')->name('article.content');
 
     // 提交评论
     Route::post('/article/{id}', 'Article@comment')->where('id', '[1-9][0-9]*');
 
     // 分类
-    Route::get('/category/{id}', 'Category@index')->where('id', '[1-9][0-9]*')->name('index.category.index');
+    Route::get('/category/{id}', 'Category@index')->where('id', '[1-9][0-9]*')->name('category.list');
     
     // 标签
-    Route::get('/tag/{id}', 'Tag@index')->where('id', '[1-9][0-9]*')->name('index.tag.index');
+    Route::get('/tag/{id}', 'Tag@index')->where('id', '[1-9][0-9]*')->name('tag.list');
 });
 
 // 后台路由
-Route::group(['domain' => env('APP_ADMIN_URL'), 'namespace' => 'Admin'], function () {
+Route::group(['domain' => env('APP_ADMIN_URL'), 'namespace' => 'Admin', 'name' => 'admin'], function () {
     Route::get('/', function () {
         return redirect('/article');
     });
