@@ -4,14 +4,9 @@
     <div class="container">
         <div class="row page-title-row">
             <div class="col-md-6">
-                <h3>分类
+                <h3>评论
                     <small>» 列表</small>
                 </h3>
-            </div>
-            <div class="col-md-6 text-right">
-                <a href="/category/create" class="btn btn-success btn-md">
-                    <i class="fa fa-plus-circle"></i> 新增分类
-                </a>
             </div>
         </div>
 
@@ -25,22 +20,26 @@
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>分类</th>
-                        <th>文章数目</th>
+                        <th>所属IP</th>
+                        <th>评论内容</th>
+                        <th>审核状态</th>
+                        <th>提交时间</th>
                         <th data-sortable="false">操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($categories as $category)
+                    @foreach ($list as $comment)
                         <tr>
-                            <td>{{ $category->id }}</td>
-                            <td>{{ $category->name }}</td>
-                            <td>{{ $category->articles_count }}</td>
+                            <td>{{ $comment->id }}</td>
+                            <td>{{ $comment->ip }}</td>
+                            <td>{{ $comment->comment }}</td>
+                            <td>@if ($comment->status == 1) 通过 @elseif ($comment->status == 2) 拒绝 @else 未审核 @endif </td>
+                            <td>{{ $comment->created_at }}</td>
                             <td>
-                                <a href="/category/{{ $category->id }}/edit" class="btn btn-xs btn-info">
+                                <a href="/comment/{{ $comment->id }}/edit" class="btn btn-xs btn-info">
                                     <i class="fa fa-edit"></i> 编辑
                                 </a>
-                                <button type="button" class="btn btn-danger btn-md" data-toggle="modal" data-target="#modal-delete" onclick="changeId({{ $category->id }})">
+                                <button type="button" class="btn btn-danger btn-md" data-toggle="modal" data-target="#modal-delete" onclick="changeId({{ $comment->id }})">
                                     <i class="fa fa-times"></i>
                                     删除
                                 </button>
@@ -64,11 +63,11 @@
                     <div class="modal-body">
                         <p class="lead">
                             <i class="fa fa-question-circle fa-lg"></i>
-                            确定要删除这个分类吗?
+                            确定要删除这个评论吗?
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <form method="POST" id="form-delete" action="/category/">
+                        <form method="POST" id="form-delete" action="/comment/">
                             @csrf
                             <input type="hidden" name="_method" value="DELETE">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
@@ -90,7 +89,7 @@
         });
 
         function changeId(id) {
-            $("#form-delete").attr('action', '/category/' + id)
+            $("#form-delete").attr('action', '/comment/' + id)
         }
     </script>
 @stop

@@ -33,15 +33,18 @@
       <div class="card" style="margin-bottom: 10px;">
           <div class="card-header">当前IP {{ $ip }}</div>
           <div class="card-body">
-            <div id="reply-box">
-
+            <div id="reply-box" style="margin-bottom: 10px;">
+            </div>
+            <div>
+              @include('admin.layouts.errors')
+              @include('admin.layouts.success')
             </div>
             <form role="form" method="POST">
               @csrf
               <input type="hidden" name="id" value="{{ $article->id }}" />
               <input type="hidden" name="parent_id" id="parent_id" value="0" />
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="请输入您想说的话..." maxlength="255">
+                <input type="text" class="form-control" name="comment" placeholder="请输入您想说的话..." maxlength="255">
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">提交</button>
@@ -52,12 +55,18 @@
       @foreach ($comments as $comment)
       <div class="card" style="margin-bottom: 10px;">
         <div class="card-header">来自 <span id="ip-{{ $comment['id'] }}">{{ $comment['ip'] }}</span> 的评论: <span style="float: right"><a href="javascript:reply({{ $comment['id'] }})">回复Ta</a></span></div>
-        <div class="card-body" id="commment-{{ $comment['id'] }}">{{ $comment['comment'] }}</div>
+        <div class="card-body" id="comment-{{ $comment['id'] }}">
+          <p><b>{{ $comment['comment'] }}</b></p>
+          <p style="color: #666;"><i> {{ $comment['created_at'] }} </i></p>
+        </div>
         
         @if (isset($comment['children']))
-        <ul class="list-group">
+        <ul class="list-group" style="margin: 0 20px 20px;">
           @foreach ($comment['children'] as $replay)
-          <li class="list-group-item">来自 {{ $replay['ip'] }} 的回复: {{ $replay['comment'] }}</li>
+          <li class="list-group-item">
+            <p>来自 {{ $replay['ip'] }} 的回复: </p>
+            <p><b>{{ $replay['comment'] }}</b> (<i style="color: #666;"> {{ $replay['created_at'] }} </i>)</p>
+          </li>
           @endforeach
         </ul>
         @endif
@@ -68,10 +77,26 @@
         « 上一页
     </button>
 </div>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 <script>
+  // 回复他人评论
   function reply(id) {
-    alert("回复ta" + id);
-    // $("#reply-box").text("回复IP地址为 " + $("#ip-" + id).text() + " 的网友说的: ");
+    var comment = $("#comment-" + id).text().substr(0, 20) + '...';
+    $("#reply-box").html("回复: " + comment + cancelBtn());
+    $("#parent_id").val(parseInt(id))
+  }
+
+  // 取消回复按钮的html代码
+  function cancelBtn()
+  {
+    return "<a style='margin-left: 20px;' href='javascript:cancelReply()'>取消回复</a>";
+  }
+
+  // 取消回复
+  function cancelReply()
+  {
+    $("#reply-box").html('');
+    $("#parent_id").val(0)
   }
 </script>
 @stop

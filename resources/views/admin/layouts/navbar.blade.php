@@ -3,11 +3,14 @@
         <li @if (Request::is('admin/article*')) class="nav-item active" @else class="nav-item" @endif>
             <a class="nav-link" href="/article">文章</a>
         </li>
-        <li @if (Request::is('admin/tag*')) class="nav-item active" @else class="nav-item" @endif>
+        <li @if (Request::is('admin/category*')) class="nav-item active" @else class="nav-item" @endif>
             <a class="nav-link" href="/category">分类</a>
         </li>
         <li @if (Request::is('admin/tag*')) class="nav-item active" @else class="nav-item" @endif>
             <a class="nav-link" href="/tag">标签</a>
+        </li>
+        <li @if (Request::is('admin/comment*')) class="nav-item active" @else class="nav-item" @endif>
+            <a class="nav-link" href="/comment">评论</a>
         </li>
         <li @if (Request::is('admin/resource*')) class="nav-item active" @else class="nav-item" @endif>
             <a class="nav-link" href="/resource">资源</a>
