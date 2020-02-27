@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 13:28:09
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-25 15:20:25
+ * @LastEditTime: 2020-02-27 16:40:00
  * @FilePath: \laravel-blog\app\Models\Categories.php
  */
 
@@ -22,7 +22,7 @@ class Categories extends BaseModel
      */
     public function articles()
     {
-        return $this->hasMany('App\Models\Articles', 'category_id', 'id');
+        return $this->hasMany(Articles::class, 'category_id', 'id');
     }
 
     /**

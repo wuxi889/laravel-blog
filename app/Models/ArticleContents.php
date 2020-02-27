@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 14:11:13
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-26 17:26:15
+ * @LastEditTime: 2020-02-27 16:39:29
  * @FilePath: \laravel-blog\app\Models\ArticleContents.php
  */
 
@@ -26,7 +26,7 @@ class ArticleContents extends BaseModel
      */
     public function article()
     {
-        return $this->belongsTo('App\Model\Articles', 'article_id', 'id');
+        return $this->belongsTo(Articles::class, 'article_id', 'id');
     }
 
     public function setContentAttribute($value)

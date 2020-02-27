@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 13:28:16
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-26 11:39:19
+ * @LastEditTime: 2020-02-27 16:40:24
  * @FilePath: \laravel-blog\app\Models\Tags.php
  */
 
@@ -16,6 +16,6 @@ class Tags extends BaseModel
 
     public function articles()
     {
-        return $this->hasManyThrough('App\Models\Articles', 'App\Models\ArticleTags', 'tag_id', 'id', 'id', 'article_id');
+        return $this->hasManyThrough(Articles::class, ArticleTags::class, 'tag_id', 'id', 'id', 'article_id');
     }
 }

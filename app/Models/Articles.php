@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 13:26:52
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-26 16:59:53
+ * @LastEditTime: 2020-02-27 16:39:07
  * @FilePath: \laravel-blog\app\Models\Articles.php
  */
 
@@ -17,17 +17,17 @@ class Articles extends BaseModel
 
     public function content()
     {
-        return $this->hasOne('App\Models\ArticleContents', 'article_id', 'id');
+        return $this->hasOne(ArticleContents::class, 'article_id', 'id');
     }
 
     public function category()
     {
-        return $this->hasOne('App\Models\Categories', 'id', 'category_id');
+        return $this->hasOne(Categories::class, 'id', 'category_id');
     }
 
     public function tags()
     {
-        return $this->hasManyThrough('App\Models\Tags', 'App\Models\ArticleTags', 'article_id', 'id', 'id', 'tag_id');
+        return $this->hasManyThrough(Tags::class, ArticleTags::class, 'article_id', 'id', 'id', 'tag_id');
     }
 
     /**
