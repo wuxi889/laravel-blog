@@ -11,7 +11,7 @@
       {{ $article->author }}
     </h5>
     <h5>发布时间： {{ $article->created_at }}</h5>
-    <h5>文章分类： <a href="{{ route('category.index', ['id' => $article->category_id]) }}">{{ $article->category->name }}</a></h5>
+    <h5>文章分类： <a href="{{ route('category.list', ['id' => $article->category_id]) }}">{{ $article->category->name }}</a></h5>
     <hr>
     文章摘要: {{ $article->description }}
     <hr>
