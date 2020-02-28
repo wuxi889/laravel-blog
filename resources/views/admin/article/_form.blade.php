@@ -1,3 +1,7 @@
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js" defer></script>
+
 <div class="form-group row">
     <label for="title" class="col-md-3 col-form-label">
         标题
@@ -71,6 +75,15 @@
         文章内容
     </label>
     <div class="col-md-8">
-        <textarea class="form-control" id="content" name="content" rows="3">{{ $data['content'] ?? '' }}</textarea>
+        <textarea class="form-control" id="summernote" name="content" rows="15">{{ $data['content'] ?? '' }}</textarea>
     </div>
 </div>
+<script>
+    $(function () {
+        $('#summernote').summernote({
+            minHeight: 300,
+            height: 300,
+            maxHeight: 600,
+        });
+    });
+</script>

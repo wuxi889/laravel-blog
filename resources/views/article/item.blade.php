@@ -18,7 +18,9 @@
     <h5>
       文章内容
     </h5>
-    {!! nl2br(e($article->content->content)) !!}
+    <div style="background-color: #FFF; padding: 10px; overflow: hidden;">
+      {!! nl2br($article->content->content) !!}
+    </div>
     <hr>
     <h5>
       标签
