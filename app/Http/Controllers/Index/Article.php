@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 13:32:02
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-27 10:40:39
+ * @LastEditTime: 2020-02-28 11:01:29
  * @FilePath: \laravel-blog\app\Http\Controllers\Index\Article.php
  */
 
@@ -42,7 +42,10 @@ class Article extends IndexBaseController
         // 当前ip
         $ip = $this->request->ip();
 
-        return view('article.item', compact('article', 'comments', 'ip'));
+        // 标题
+        $title = $article->title;
+
+        return view('article.item', compact('article', 'comments', 'ip', 'title'));
     }
 
     public function comment(int $id)

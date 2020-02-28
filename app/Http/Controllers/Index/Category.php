@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 13:32:39
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-25 15:41:01
+ * @LastEditTime: 2020-02-28 11:06:52
  * @FilePath: \laravel-blog\app\Http\Controllers\Index\Category.php
  */
 
@@ -24,6 +24,8 @@ class Category extends IndexBaseController
 
         $articles = Articles::getListByCategory($id);
 
-        return view('category.list', compact('category', 'articles'));
+        $title = $category->name . '分类的文章';
+
+        return view('category.list', compact('category', 'articles', 'title'));
     }
 }

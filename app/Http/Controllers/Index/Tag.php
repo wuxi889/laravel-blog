@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 13:32:52
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-25 17:20:18
+ * @LastEditTime: 2020-02-28 11:07:47
  * @FilePath: \laravel-blog\app\Http\Controllers\Index\Tag.php
  */
 
@@ -23,6 +23,9 @@ class Tag extends IndexBaseController
         if (!$tag) return abort(404);
 
         $articles = Articles::getListByTag($id);
-        return view('tag.list', compact('tag', 'articles'));
+
+        $title = $tag->name . '标签的文章';
+
+        return view('tag.list', compact('tag', 'articles', 'title'));
     }
 }

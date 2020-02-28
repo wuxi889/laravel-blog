@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>@yield('title', 'Laravel Blog') - {{ config('blog.title') }}</title>
+    <title>{{ $title ?? 'Laravel Blog'}} - {{ config('blog.title') }}</title>
     <meta name="keywords" content="{{ config('blog.keywords') }}">
     <meta name="description" content="{{ config('blog.description') }}">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
