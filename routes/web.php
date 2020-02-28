@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 12:52:42
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-27 17:03:48
+ * @LastEditTime: 2020-02-28 11:29:51
  * @FilePath: \laravel-blog\routes\web.php
  */
 
@@ -18,6 +18,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// TODO:: 路由参数统一正则，可使用 pattern 方法在 RouteServiceProvider 的 boot 方法中定义
+// 参考URI：https://learnku.com/docs/laravel/6.x/routing/5135#9f554e
 
 // 前台路由
 Route::group(['domain' => env('APP_URL'), 'namespace' => 'Index', 'name' => 'index'], function () {
