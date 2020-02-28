@@ -86,10 +86,10 @@ class Tag extends AdminBaseController
      * @Description: 
      * @Author: uSee | wuxi889@vip.qq.com
      * @DateTime 2020-02-27
-     * @param [int] $id
+     * @param [mixed] $id
      * @return void
      */
-    public function destroy(int $id)
+    public function destroy($id)
     {
         if($this->model->whereIn($this->model->getKeyName(), (array) $id)->delete()) {
             ArticleTags::where('tag_id', $id)->delete();

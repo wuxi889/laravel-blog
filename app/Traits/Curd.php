@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 13:39:43
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-27 15:38:27
+ * @LastEditTime: 2020-02-28 17:58:17
  * @FilePath: \laravel-blog\app\Traits\Curd.php
  */
 
