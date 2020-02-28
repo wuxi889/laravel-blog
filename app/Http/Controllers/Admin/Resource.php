@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\ResourceFileRequest;
 use App\Http\Requests\ResourceCreateFolderRequest;
+use App\Models\Resources;
 
 class Resource extends Controller
 {
@@ -80,6 +81,9 @@ class Resource extends Controller
         $result = $this->manager->deleteFile($path);
 
         if ($result === true) {
+            // 资源表中记录删除文件
+            Resources::where('name', $del_file)->first()->delete();
+
             return redirect()
                 ->back()
                 ->with('success', '文件「' . $del_file . '」已删除.');
@@ -89,6 +93,11 @@ class Resource extends Controller
         return redirect()
             ->back()
             ->withErrors([$error]);
+    }
+
+    public function destroy(Request $request)
+    {
+        return $request->get('del_folder') ? $this->deleteFolder($request) : $this->deleteFile($request);
     }
 
     /**
@@ -131,14 +140,45 @@ class Resource extends Controller
     public function uploadFile(ResourceFileRequest $request)
     {
         $file = $_FILES['file'];
+
+        // 文件hash值
+        $hash = hash_file('md5', $file['tmp_name']);
+
+        // 文件后缀
+        $ext = pathinfo($file['name'])['extension'];
+
+        // 判断上传文件名
         $fileName = $request->get('file_name');
-        $fileName = $fileName ?: $file['name'];
+        if ($fileName) {
+            $pathinfo = pathinfo($fileName);
+            $fileName .= ($pathinfo['extension'] ?? '') != $ext ? sprintf(".%s", $ext) : '';
+        } 
+        else {
+            $fileName = $file['name'];
+        }
+
+        // 文件路径
         $path = str_finish($request->get('folder'), '/') . $fileName;
         $content = File::get($file['tmp_name']);
 
+        // 判断图片是否已存在
+        if (Resources::where('hash', $hash)->first()) {
+            return redirect()
+                ->back()
+                ->withErrors(['该文件已存在']);
+        }
+
+        // 上传图片
         $result = $this->manager->saveFile($path, $content);
 
         if ($result === true) {
+            // 资源表中记录新增文件
+            Resources::create([
+                'name' => $fileName,
+                'hash' => $hash,
+                'mime' => $file['type'],
+                'path' => config('blog.uploads.webpath') . $path,
+            ]);
             return redirect()
                 ->back()
                 ->with("success", '文件「' . $fileName . '」上传成功.');

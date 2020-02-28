@@ -26,6 +26,7 @@ class ResourceFileRequest extends FormRequest
         return [
             'file' => 'required',
             'folder' => 'required',
+            'file_name' => 'max:63'
         ];
     }
 }
