@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 13:39:43
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-28 17:58:17
+ * @LastEditTime: 2020-03-02 10:15:03
  * @FilePath: \laravel-blog\app\Traits\Curd.php
  */
 
@@ -34,6 +34,21 @@ trait Curd
         ];
 
         return $available ? array_diff($fields, $unavailable_fields) : $fields;
+    }
+
+    /**
+     * 过滤字段
+     *
+     * @Description: 
+     * @Author: uSee | wuxi889@vip.qq.com
+     * @DateTime 2020-02-26
+     * @param array $params
+     * @return array
+     */
+    public function filterFields(array $params): array
+    {
+        $fields = $this->getFields(true);
+        return array_intersect_key(array_combine($fields, $fields), $params);
     }
 
     /**
@@ -82,22 +97,7 @@ trait Curd
     }
 
     /**
-     * 过滤字段
-     *
-     * @Description: 
-     * @Author: uSee | wuxi889@vip.qq.com
-     * @DateTime 2020-02-26
-     * @param array $params
-     * @return array
-     */
-    public function filterFields(array $params): array
-    {
-        $fields = $this->getFields(true);
-        return array_intersect_key(array_combine($fields, $fields), $params);
-    }
-
-    /**
-     * Undocumented function
+     * 展示页面
      *
      * @Description: 
      * @Author: uSee | wuxi889@vip.qq.com
@@ -135,9 +135,8 @@ trait Curd
      */
     public function destroy($id)
     {
-        if($this->model->whereIn($this->model->getKeyName(), (array) $id)->delete()) {
-            return redirect('/' . $this->getController(true))->with('success', '对象删除成功');
-        }
-        return redirect('/' . $this->getController(true))->with('error', '对象删除失败');
+        return $this->model->whereIn($this->model->getKeyName(), (array) $id)->delete()
+        ? redirect('/' . $this->getController(true))->with('success', '对象删除成功')
+        : redirect('/' . $this->getController(true))->with('error', '对象删除失败');
     }
 }
