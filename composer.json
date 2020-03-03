@@ -43,7 +43,7 @@
             "database/factories"
         ],
         "files": [
-            "app/common.php",
+            "app/Common.php",
             "app/TestFunctions.php"
         ]
     },

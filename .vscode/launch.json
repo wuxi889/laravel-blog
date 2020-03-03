@@ -8,7 +8,10 @@
             "name": "Listen for Xdebug",
             "type": "php",
             "request": "launch",
-            "port": 10086
+            "port": 10086,
+            "pathMappings": {
+                "/var/www/laravel-blog/": "${workspaceRoot}"
+            }
         },
         {
             "name": "Launch currently open script",
