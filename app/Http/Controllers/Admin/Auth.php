@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class Auth extends AdminBaseController
@@ -20,7 +21,8 @@ class Auth extends AdminBaseController
      */
     public function showLogin()
     {
-        return view('admin.auth.login');
+        $user = User::first();
+        return view('admin.auth.login', compact('user'));
     }
 
     /**

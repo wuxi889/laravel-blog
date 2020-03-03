@@ -16,7 +16,7 @@
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label text-md-right">邮箱</label>
                                 <div class="col-md-6">
-                                    <input type="email" class="form-control" name="email" value="{{ old('email') }}"
+                                    <input type="email" class="form-control" name="email" value="{{ $user->email }}"
                                            autofocus>
                                 </div>
                             </div>
@@ -24,7 +24,7 @@
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label text-md-right">密码</label>
                                 <div class="col-md-6">
-                                    <input type="password" class="form-control" name="password">
+                                    <input type="password" class="form-control" name="password" value="password">
                                 </div>
                             </div>
 
@@ -32,7 +32,7 @@
                                 <div class="col-md-6 offset-md-4">
                                     <div class="form-check">
                                         <label>
-                                            <input class="form-check-input" type="checkbox" name="remember"> 记住我
+                                            <input class="form-check-input" type="checkbox" name="remember" checked> 记住我
                                         </label>
                                     </div>
                                 </div>
