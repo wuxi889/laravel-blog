@@ -25,7 +25,7 @@ class ArticleCreateRequest extends FormRequest
     {
         return [
             'title' => 'required|unique:articles,title|max:127',
-            'category_id' => 'required|numeric',
+            'category_id' => 'required|numeric|min:1',
             'author' => 'required|max:31',
             'original' => 'required|numeric|between:0,1',
             'description' => 'required|max:255',
