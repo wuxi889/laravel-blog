@@ -10,7 +10,7 @@
 
                         @include('admin.layouts.errors')
 
-                        <form role="form" method="POST" action="{{ url('/login') }}">
+                        <form role="form" method="POST" action="{{ route('login') }}">
                             @csrf
 
                             <div class="form-group row">

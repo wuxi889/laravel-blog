@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 12:52:42
  * @LastEditors: uSee
- * @LastEditTime: 2020-02-28 11:29:51
+ * @LastEditTime: 2020-03-03 13:05:38
  * @FilePath: \laravel-blog\routes\web.php
  */
 
@@ -23,7 +23,7 @@
 // 参考URI：https://learnku.com/docs/laravel/6.x/routing/5135#9f554e
 
 // 前台路由
-Route::group(['domain' => env('APP_URL'), 'namespace' => 'Index', 'name' => 'index'], function () {
+Route::group(['namespace' => 'Index', 'name' => 'index'], function () {
     Route::get('/', 'Index@index');
     Route::get('/about', 'Index@about');
     Route::get('/contact', 'Index@contact');
@@ -42,9 +42,9 @@ Route::group(['domain' => env('APP_URL'), 'namespace' => 'Index', 'name' => 'ind
 });
 
 // 后台路由
-Route::group(['domain' => env('APP_ADMIN_URL'), 'namespace' => 'Admin', 'name' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'name' => 'admin'], function () {
     Route::get('/', function () {
-        return redirect('/article');
+        return redirect('/admin/article');
     });
 
     // 需要验证登录
