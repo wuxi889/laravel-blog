@@ -10,7 +10,7 @@
                 <div class="pull-left">
                     <ul class="breadcrumb">
                         @foreach ($breadcrumbs as $path => $disp)
-                            <li><a href="/resource?folder={{ $path }}">{{ $disp }}</a></li>&nbsp;/&nbsp;
+                            <li><a href="{{ route('resource', ['folder' => $path]) }}">{{ $disp }}</a></li>&nbsp;/&nbsp;
                         @endforeach
                         <li class="active">{{ $folderName }}</li>
                     </ul>
@@ -48,7 +48,7 @@
                     @foreach ($subfolders as $path => $name)
                         <tr>
                             <td>
-                                <a href="/resource?folder={{ $path }}">
+                                <a href="{{ route('resource', ['folder' => $path]) }}">
                                     <i class="fa fa-folder fa-lg fa-fw"></i>
                                     {{ $name }}
                                 </a>

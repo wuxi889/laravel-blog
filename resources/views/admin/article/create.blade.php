@@ -20,7 +20,7 @@
 
                         @include('admin.layouts.errors')
 
-                        <form role="form" method="POST" action="/article">
+                        <form role="form" method="POST" action="{{ route('article.store') }}">
                             @csrf
 
                             @include('admin.article._form')

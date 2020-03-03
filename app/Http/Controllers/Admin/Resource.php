@@ -82,7 +82,7 @@ class Resource extends Controller
 
         if ($result === true) {
             // 资源表中记录删除文件
-            Resources::where('name', $del_file)->first()->delete();
+            Resources::where('name', $del_file)->delete();
 
             return redirect()
                 ->back()
@@ -155,6 +155,13 @@ class Resource extends Controller
         } 
         else {
             $fileName = $file['name'];
+        }
+
+        // 检查文件名是否已存在
+        if (Resources::where('name', $fileName)->first()) {
+            return redirect()
+                ->back()
+                ->withErrors(['文件名已存在，请重新命名']);
         }
 
         // 文件路径

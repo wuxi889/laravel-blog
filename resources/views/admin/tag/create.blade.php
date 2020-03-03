@@ -20,7 +20,7 @@
 
                         @include('admin.layouts.errors')
 
-                        <form role="form" method="POST" action="/tag">
+                        <form role="form" method="POST" action="{{ route('tag.store') }}">
                             @csrf
 
                             @include('admin.tag._form')

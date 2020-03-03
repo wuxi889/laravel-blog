@@ -49,8 +49,8 @@ class Tag extends AdminBaseController
         }
         
         return $this->model->save() 
-            ? redirect('/tag')->with('success', '标签 [' . $this->model->name . '] 创建成功.') 
-            :redirect('/tag')->with('error', '标签 [' . $this->model->name . '] 创建失败.');
+            ? redirect()->route('tag.index')->with('success', '标签 [' . $this->model->name . '] 创建成功.') 
+            : redirect()->route('tag.index')->with('error', '标签 [' . $this->model->name . '] 创建失败.');
     }
 
     /**
@@ -76,8 +76,8 @@ class Tag extends AdminBaseController
         }
         
         return $this->model->save() 
-            ? redirect('/tag')->with('success', '标签 [' . $this->model->name . '] 修改成功.') 
-            :redirect('/tag')->with('error', '标签 [' . $this->model->name . '] 修改失败.');
+            ? redirect()->route('tag.index')->with('success', '标签 [' . $this->model->name . '] 修改成功.') 
+            : redirect()->route('tag.index')->with('error', '标签 [' . $this->model->name . '] 修改失败.');
     }
 
     /**
@@ -93,8 +93,8 @@ class Tag extends AdminBaseController
     {
         if($this->model->whereIn($this->model->getKeyName(), (array) $id)->delete()) {
             ArticleTags::where('tag_id', $id)->delete();
-            return redirect('/tag')->with('success', '对象删除成功');
+            return redirect()->route('tag.index')->with('success', '对象删除成功');
         }
-        return redirect('/tag')->with('error', '对象删除失败');
+        return redirect()->route('tag.index')->with('error', '对象删除失败');
     }
 }

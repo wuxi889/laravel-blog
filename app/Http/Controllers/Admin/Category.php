@@ -54,8 +54,8 @@ class Category extends AdminBaseController
         }
         
         return $this->model->save() 
-            ? redirect('/category')->with('success', '分类 [' . $this->model->name . '] 创建成功.') 
-            :redirect('/category')->with('error', '分类 [' . $this->model->name . '] 创建失败.');
+            ? redirect()->route('category.index')->with('success', '分类 [' . $this->model->name . '] 创建成功.') 
+            : redirect()->route('category.index')->with('error', '分类 [' . $this->model->name . '] 创建失败.');
     }
 
     /**
@@ -81,8 +81,8 @@ class Category extends AdminBaseController
         }
         
         return $this->model->save() 
-            ? redirect('/category')->with('success', '分类 [' . $this->model->name . '] 修改成功.') 
-            :redirect('/category')->with('error', '分类 [' . $this->model->name . '] 修改失败.');
+            ? redirect()->route('category.index')->with('success', '分类 [' . $this->model->name . '] 修改成功.') 
+            : redirect()->route('category.index')->with('error', '分类 [' . $this->model->name . '] 修改失败.');
     }
 
     /**
@@ -98,8 +98,8 @@ class Category extends AdminBaseController
     {
         if($this->model->whereIn($this->model->getKeyName(), (array) $id)->delete()) {
             Articles::where('category_id', $id)->update(['category_id' => 0]);
-            return redirect('/category')->with('success', '对象删除成功');
+            return redirect()->route('category.index')->with('success', '对象删除成功');
         }
-        return redirect('/category')->with('error', '对象删除失败');
+        return redirect()->route('category.index')->with('error', '对象删除失败');
     }
 }

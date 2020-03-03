@@ -9,7 +9,7 @@
                 </h3>
             </div>
             <div class="col-md-6 text-right">
-                <a href="/article/create" class="btn btn-success btn-md">
+                <a href="{{ route('article.create') }}" class="btn btn-success btn-md">
                     <i class="fa fa-plus-circle"></i> 新增文章
                 </a>
             </div>
@@ -37,13 +37,13 @@
                     @foreach ($list as $article)
                         <tr>
                             <td>{{ $article->id }}</td>
-                            <td class="hidden-sm"><a href="{{ env('APP_URL') }}/article/{{ $article->id }}" target="_blank">{{ $article->title }}</a></td>
+                            <td class="hidden-sm"><a href="{{ route('article.content', ['id' => $article->id]) }}" target="_blank">{{ $article->title }}</a></td>
                             <td class="hidden-md">{{ $article->category->name ?? ''}}</td>
                             <td class="hidden-md">{{ $article->author }}</td>
                             <td class="hidden-md">@if ($article->original) 是 @else 否 @endif</td>
                             <td class="hidden-sm">{{ $article->updated_at }}</td>
                             <td>
-                                <a href="/article/{{ $article->id }}/edit" class="btn btn-xs btn-info">
+                                <a href="{{ route('article.edit', ['article' => $article->id]) }}" class="btn btn-xs btn-info">
                                     <i class="fa fa-edit"></i> 编辑
                                 </a>
                                 <button type="button" class="btn btn-danger btn-md" data-toggle="modal" data-target="#modal-delete" onclick="changeId({{ $article->id }})">
@@ -74,7 +74,7 @@
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <form method="POST" id="form-delete" action="/article/">
+                        <form method="POST" id="form-delete" action="">
                             @csrf
                             <input type="hidden" name="_method" value="DELETE">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
@@ -96,7 +96,7 @@
         });
 
         function changeId(id) {
-            $("#form-delete").attr('action', '/article/' + id)
+            $("#form-delete").attr('action', '/admin/article/' + id)
         }
     </script>
 @stop

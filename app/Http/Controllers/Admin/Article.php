@@ -41,7 +41,7 @@ class Article extends AdminBaseController
     }
 
     /**
-     * 更新
+     * 新增
      *
      * @Description: 
      * @Author: uSee | wuxi889@vip.qq.com
@@ -61,8 +61,8 @@ class Article extends AdminBaseController
         
         if ($this->model->save()) {
             // 创建内容
-            $contentModel = new ArticleContents(['content' => $request->get('content')]);
-            $this->model->content()->save($contentModel);
+            $this->model->content()->create(['content' => $request->get('content')]);
+            // ArticleContents::create(['article_id' => $this->model->id, 'content' => $request->get('content')]);
 
             // 添加标签
             $id = $this->model->id;
@@ -74,10 +74,10 @@ class Article extends AdminBaseController
             }
             ArticleTags::insert($insert);
 
-            return redirect('/article')->with('success', '文章' . $this->model->title . '」创建成功.');
+            return redirect()->route('article.index')->with('success', '文章' . $this->model->title . '」创建成功.');
         }
         else {
-            return redirect('/article')->with('error', '文章' . $this->model->title . '」创建失败.');
+            return redirect()->route('article.index')->with('error', '文章' . $this->model->title . '」创建失败.');
         }
     }
 
@@ -154,10 +154,10 @@ class Article extends AdminBaseController
             ArticleTags::where('article_id', $id)->delete();
             ArticleTags::insert($insert);
 
-            return redirect('/article')->with('success', '文章' . $this->model->title . '」修改成功.');
+            return redirect()->route('article.index')->with('success', '文章' . $this->model->title . '」修改成功.');
         }
         else {
-            return redirect('/article')->with('error', '文章' . $this->model->title . '」修改失败.');
+            return redirect()->route('article.index')->with('error', '文章' . $this->model->title . '」修改失败.');
         }
     }
 }

@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 13:39:43
  * @LastEditors: uSee
- * @LastEditTime: 2020-03-02 10:15:03
+ * @LastEditTime: 2020-03-03 13:42:21
  * @FilePath: \laravel-blog\app\Traits\Curd.php
  */
 
@@ -136,7 +136,7 @@ trait Curd
     public function destroy($id)
     {
         return $this->model->whereIn($this->model->getKeyName(), (array) $id)->delete()
-        ? redirect('/' . $this->getController(true))->with('success', '对象删除成功')
-        : redirect('/' . $this->getController(true))->with('error', '对象删除失败');
+        ? redirect()->route(sprintf('%s.index', $this->getController(true)))->with('success', '对象删除成功')
+        : redirect()->route(sprintf('%s.index', $this->getController(true)))->with('error', '对象删除失败');
     }
 }

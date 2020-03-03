@@ -21,7 +21,7 @@
                         @include('admin.layouts.errors')
 
 
-                        <form role="form" method="POST" action="/comment/{{ $data['id'] }}">
+                        <form role="form" method="POST" action="/admin/comment/{{ $data['id'] }}">
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
                             <input type="hidden" name="id" value="{{ $data['id'] }}">

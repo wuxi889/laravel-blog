@@ -4,7 +4,7 @@
  * @Author: uSee
  * @Date: 2020-02-24 12:52:42
  * @LastEditors: uSee
- * @LastEditTime: 2020-03-03 13:05:38
+ * @LastEditTime: 2020-03-03 13:35:15
  * @FilePath: \laravel-blog\routes\web.php
  */
 
@@ -49,14 +49,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'name' => 'admin'], f
 
     // 需要验证登录
     Route::middleware('auth')->group(function () {
-        Route::resource('/article', 'Article');
-        Route::resource('/category', 'Category');
-        Route::resource('/tag', 'Tag');
-        Route::resource('/comment', 'Comment');
-        Route::resource('/resource', 'Resource');
+        Route::resource('/article', 'Article')->names('article');
+        Route::resource('/category', 'Category')->names('category');
+        Route::resource('/tag', 'Tag')->names('tag');
+        Route::resource('/comment', 'Comment')->names('comment');
         
         // 资源控制器
-        Route::get('/resource', 'Resource@index');
+        Route::get('/resource', 'Resource@index')->name('resource');
         Route::post('/resource/file', 'Resource@uploadFile');
         Route::delete('/resource/file', 'Resource@deleteFile');
         Route::post('/resource/folder', 'Resource@createFolder');

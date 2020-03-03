@@ -36,7 +36,7 @@
                             <td>@if ($comment->status == 1) 通过 @elseif ($comment->status == 2) 拒绝 @else 未审核 @endif </td>
                             <td>{{ $comment->created_at }}</td>
                             <td>
-                                <a href="/comment/{{ $comment->id }}/edit" class="btn btn-xs btn-info">
+                                <a href="{{ route('comment.edit', ['comment' => $comment->id]) }}" class="btn btn-xs btn-info">
                                     <i class="fa fa-edit"></i> 编辑
                                 </a>
                                 <button type="button" class="btn btn-danger btn-md" data-toggle="modal" data-target="#modal-delete" onclick="changeId({{ $comment->id }})">
@@ -67,7 +67,7 @@
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <form method="POST" id="form-delete" action="/comment/">
+                        <form method="POST" id="form-delete" action="">
                             @csrf
                             <input type="hidden" name="_method" value="DELETE">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
@@ -89,7 +89,7 @@
         });
 
         function changeId(id) {
-            $("#form-delete").attr('action', '/comment/' + id)
+            $("#form-delete").attr('action', '/admin/comment/' + id)
         }
     </script>
 @stop

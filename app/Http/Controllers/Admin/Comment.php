@@ -28,7 +28,7 @@ class Comment extends AdminBaseController
         $comment->status = $request->status;
 
         return $comment->save()
-            ? redirect('/comment')->with('success', '审核评论成功.') 
-            :redirect('/comment')->with('error', '审核评论失败');
+            ? redirect()->route('comment.index')->with('success', '审核评论成功.') 
+            :redirect()->route('comment.index')->with('error', '审核评论失败');
     }
 }

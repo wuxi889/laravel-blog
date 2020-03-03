@@ -21,7 +21,7 @@
                         @include('admin.layouts.errors')
 
 
-                        <form role="form" method="POST" action="/tag/{{ $data['id'] }}">
+                        <form role="form" method="POST" action="{{ route('tag.update', ['tag' => $data['id']]) }}">
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
                             <input type="hidden" name="id" value="{{ $data['id'] }}">

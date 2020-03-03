@@ -9,7 +9,7 @@
                 </h3>
             </div>
             <div class="col-md-6 text-right">
-                <a href="/category/create" class="btn btn-success btn-md">
+                <a href="{{ route('category.create') }}" class="btn btn-success btn-md">
                     <i class="fa fa-plus-circle"></i> 新增分类
                 </a>
             </div>
@@ -37,7 +37,7 @@
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->articles_count }}</td>
                             <td>
-                                <a href="/category/{{ $category->id }}/edit" class="btn btn-xs btn-info">
+                                <a href="{{ route('category.edit', ['category' => $category->id]) }}" class="btn btn-xs btn-info">
                                     <i class="fa fa-edit"></i> 编辑
                                 </a>
                                 <button type="button" class="btn btn-danger btn-md" data-toggle="modal" data-target="#modal-delete" onclick="changeId({{ $category->id }})">
@@ -68,7 +68,7 @@
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <form method="POST" id="form-delete" action="/category/">
+                        <form method="POST" id="form-delete" action="">
                             @csrf
                             <input type="hidden" name="_method" value="DELETE">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
@@ -90,7 +90,7 @@
         });
 
         function changeId(id) {
-            $("#form-delete").attr('action', '/category/' + id)
+            $("#form-delete").attr('action', '/admin/category/' + id)
         }
     </script>
 @stop

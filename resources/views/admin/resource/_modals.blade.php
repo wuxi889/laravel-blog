@@ -2,7 +2,7 @@
 <div class="modal fade" id="modal-folder-create">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form method="POST" action="/resource/folder" class="form-horizontal">
+            <form method="POST" action="/admin/resource/folder" class="form-horizontal">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="folder" value="{{ $folder }}">
                 <div class="modal-header">
@@ -53,7 +53,7 @@
                 </p>
             </div>
             <div class="modal-footer">
-                <form method="POST" action="/resource/file">
+                <form method="POST" action="/admin/resource/file">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="folder" value="{{ $folder }}">
@@ -89,7 +89,7 @@
                 </p>
             </div>
             <div class="modal-footer">
-                <form method="POST" action="/resource/folder">
+                <form method="POST" action="/admin/resource/folder">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="folder" value="{{ $folder }}">
@@ -110,7 +110,7 @@
 <div class="modal fade" id="modal-file-upload">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form method="POST" action="/resource/file" enctype="multipart/form-data">
+            <form method="POST" action="/admin/resource/file" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="folder" value="{{ $folder }}">
                 <div class="modal-header">
